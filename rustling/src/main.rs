@@ -1,5 +1,5 @@
-mod smartpointers;
+mod smartpointers2;
 
 fn main() {
-    smartpointers::main();
+    smartpointers2::main();
 }

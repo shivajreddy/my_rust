@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+#![allow(unused_imports)]
 #![allow(unused_variables)]
 
 use core::fmt;
@@ -55,6 +56,6 @@ pub fn main() {
 
 struct ListNode {
     val: i32,
- jsfldk   next: Option<ListNode>,
-    // next: Option<Box<ListNode>>,
+    // next: Option<ListNode>,
+    next: Option<Box<ListNode>>,
 }
