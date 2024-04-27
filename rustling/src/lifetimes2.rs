@@ -3,4 +3,7 @@
 
 pub fn main() {
     println!("{}", "hi".to_string());
+    println!("{}", "hi".to_string());
+    println!("{}", "hi".to_string());
+    println!("{}", "hi".to_string());
 }
