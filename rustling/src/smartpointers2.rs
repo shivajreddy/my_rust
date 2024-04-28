@@ -1,61 +1,48 @@
 #![allow(dead_code)]
 #![allow(unused_imports)]
 #![allow(unused_variables)]
+#![allow(unused_mut)]
 
-use core::fmt;
-
-struct MySmartPointer {
-    data: String,
-}
-
-impl MySmartPointer {
-    fn new(data: String) -> Self {
-        MySmartPointer { data }
-    }
-}
-
-impl Drop for MySmartPointer {
-    fn drop(&mut self) {
-        println!("[{} is being dropped ]", self.data);
-    }
-}
-
-struct MySmartpointer2 {}
-
-#[derive(Debug)]
-struct Person {
-    age: i32,
-    name: String,
+struct ListNode<'a> {
+    val: i32,
+    next: Option<Box<&'a ListNode<'a>>>,
+    // next: Option<ListNode>,
 }
 
 pub fn main() {
-    /*
-    println!("Program Starts");
-    let o1: MySmartPointer = MySmartPointer::new("hello 😙".to_string()); // ---------
-    let p: &MySmartPointer = &o1;
-
-    println!("Something");
-
-    println!("{}", p.data);
-    println!("Program Ends");
-    // */
-
-    let s: String = "hi".to_string();
-    let s1: &String = &s;
-
-    println!("{} {:p} {}", s, &s, *&s);
-    println!("{} {0:p} {}", s1, *s1);
-
-    let p = Person {
-        age: 30,
-        name: "bob".to_string(),
+    let mut n1 = ListNode {
+        val: 10,
+        next: None,
+    };
+    let mut n2 = ListNode {
+        val: 20,
+        next: None,
+    };
+    let mut n3 = ListNode {
+        val: 30,
+        next: None,
     };
 
-    let r1 = &p;
+    let n1 = Box::new(ListNode {
+        val: 10,
+        next: None,
+    });
+    let n2 = Box::new(ListNode {
+        val: 20,
+        next: None,
+    });
+    let n3 = Box::new(ListNode {
+        val: 30,
+        next: None,
+    });
+
+    n1.next = Some(&n2);
+    // n1.next = Some(Box::new(n2));
+    n2.next = Some(Box::new(n3));
+
+    print_linked_list(&n1);
 }
 
-struct ListNode {
-    val: i32,
-    // next: Option<ListNode>,
-    next: Option<Box<ListNode>>,
+pub fn print_linked_list(root: &ListNode) {
+    println!();
 }
