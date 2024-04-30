@@ -1,5 +1,5 @@
-mod smartpointers2;
+mod boxy;
 
 fn main() {
-    smartpointers2::main();
+    boxy::main();
 }

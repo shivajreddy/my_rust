@@ -36,13 +36,13 @@ pub fn main() {
         next: None,
     });
 
-    n1.next = Some(&n2);
-    // n1.next = Some(Box::new(n2));
-    n2.next = Some(Box::new(n3));
-
-    print_linked_list(&n1);
+    // n1.next = Some(&n2);
+    // // n1.next = Some(Box::new(n2));
+    // n2.next = Some(Box::new(n3));
+    //
+    // print_linked_list(&n1);
 }
 
-pub fn print_linked_list(root: &ListNode) {
-    println!();
-}
+// pub fn print_linked_list(root: &ListNode) {
+//     println!();
+// }
