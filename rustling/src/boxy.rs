@@ -11,3 +11,9 @@ struct Node<T> {
     val: T,
     next: Option<Box<Node<T>>>,
 }
+
+struct LinkedListNode<T> {
+    val: T,
+    prev: Option<Box<LinkedListNode<T>>>,
+    next: Option<Box<LinkedListNode<T>>>,
+}
