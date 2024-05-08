@@ -5,38 +5,56 @@
 
 use unicode_segmentation::UnicodeSegmentation;
 
-pub fn main() {
-    // let mut char_indices = yes.char_indices();
-    // assert_eq!(Some((0, 'y')), char_indices.next()); // not (0, 'y̆')
-    // assert_eq!(Some((1, '\u{0306}')), char_indices.next());
-    // // note the 3 here - the previous character took up two bytes
-    // assert_eq!(Some((3, 'e')), char_indices.next());
-    // assert_eq!(Some((4, 's')), char_indices.next());
-    // assert_eq!(None, char_indices.next());
+// pub fn main() {
+//     let input = "y̆es";
+//
+//     println!("{} length={}", &input, input.len());
+//     for (byte_index, c) in input.char_indices() {
+//         let c_len = c.len_utf8();
+//         let next_index = byte_index + c_len;
+//         let c_str = &input[byte_index..next_index];
+//
+//         println!("{}  | {} len_utf8  | UTF8-{}", c_str, c_len, c as u32);
+//     }
+//     println!("{:?}", input.char_indices());
+//
+//     let x = input.graphemes(true);
+//     println!("{:?}", &x);
+// }
 
-    let input = "y̆es";
+use std::collections::{HashMap, HashSet};
 
-    println!("{} length={}", &input, input.len());
-    for (byte_index, c) in input.char_indices() {
-        let c_len = c.len_utf8();
-        let next_index = byte_index + c_len;
-        let c_str = &input[byte_index..next_index];
+pub fn main<'a>() -> HashSet<&'a str> {
+    let word = String::from("dog");
+    let possiblel_anagrams: &[&str] = &["dgo, dogo, god"];
 
-        println!("{}  | {} len_utf8  | UTF8-{}", c_str, c_len, c as u32);
+    let mut hm: HashMap<char, u32> = HashMap::new();
+
+    for c in word.chars() {
+        if let Some(val) = hm.get(&c) {
+            hm.insert(c, val + 1);
+        } else {
+            hm.insert(c, 1);
+        }
     }
 
-    println!("-----");
+    let result: HashSet<&'a str> = HashSet::new();
 
-    for (byte_index, c) in input.char_indices().rev() {
-        let c_len = c.len_utf8();
-        let next_index = byte_index + c_len;
-        let c_str = &input[byte_index..next_index];
+    println!("{:?}", hm);
 
-        println!("{}  | {} len_utf8  | UTF8-{}", c_str, c_len, c as u32);
+    result
+}
+
+fn create_map(word: &str) -> HashMap<char, u32> {
+    let mut result: HashMap<char, u32> = HashMap::new();
+
+    for c in word.chars() {
+        if let Some(val) = result.get(&c) {
+            result.insert(c, val + 1);
+        } else {
+            result.insert(c, 1);
+        }
     }
 
-    println!("{:?}", input.char_indices());
-
-    let x = input.graphemes(true);
-    println!("{:?}", &x);
+    result
 }
