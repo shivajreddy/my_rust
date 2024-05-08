@@ -1,7 +1,9 @@
 // mod boxy;
-mod lru;
+// mod lru;
+mod playground;
 
 fn main() {
     // boxy::main();
-    lru::main();
+    // lru::main();
+    playground::main();
 }
