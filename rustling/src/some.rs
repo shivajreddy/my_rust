@@ -3,5 +3,4 @@
 
 pub fn main() {
     let optinal_value = Some(10);
-    let optinal_value = Some(10);
 }

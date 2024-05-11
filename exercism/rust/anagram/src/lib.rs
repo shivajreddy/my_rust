@@ -11,11 +11,9 @@ fn create_char_map(word: &str) -> HashMap<char, u32> {
     let mut hm: HashMap<char, u32> = HashMap::new();
     // Create HashMap
     for c in word.chars() {
-        if let Some(val) = hm.get(&c) {
-            hm.insert(c, val + 1);
-        } else {
-            hm.insert(c, 1);
-        }
+        let lower_c = c.to_lowercase().next().unwrap();
+
+        *hm.entry(lower_c).or_insert(0) += 1;
     }
     hm
 }
@@ -35,21 +33,26 @@ fn same_frequencey(map1: &HashMap<char, u32>, map2: &HashMap<char, u32>) -> bool
     true
 }
 
-pub fn anagrams_for<'a>(word: &str, possible_anagrams: &[&str]) -> HashSet<&'a str> {
-    let mut result: HashSet<&str> = HashSet::new();
+pub fn anagrams_for<'a>(word: &str, possible_anagrams: &'a [&str]) -> HashSet<&'a str> {
+    let mut result: HashSet<&'a str> = HashSet::new();
     let word_freq_map = create_char_map(word);
 
     println!("Given word >> {}", word);
     for possible_anagram in possible_anagrams {
         println!("possible_anagram::{}", possible_anagram);
         if word.to_lowercase() == possible_anagram.to_lowercase() {
-            break;
+            println!("failed::due to same word {}", possible_anagram);
+            continue;
         }
         let freq_map = create_char_map(possible_anagram);
+        println!("comparing maps -> {:?}", word_freq_map);
+        println!("comparing maps -> {:?}", freq_map);
         if !same_frequencey(&word_freq_map, &freq_map) {
-            break;
+            println!("failed::freq maps {}", possible_anagram);
+            continue;
         }
-        result.insert(&possible_anagram);
+        println!("{}:::: This is valid", possible_anagram);
+        result.insert(possible_anagram);
     }
 
     result
