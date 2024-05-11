@@ -12,7 +12,6 @@ fn create_char_map(word: &str) -> HashMap<char, u32> {
     // Create HashMap
     for c in word.chars() {
         let lower_c = c.to_lowercase().next().unwrap();
-
         *hm.entry(lower_c).or_insert(0) += 1;
     }
     hm
@@ -54,6 +53,5 @@ pub fn anagrams_for<'a>(word: &str, possible_anagrams: &'a [&str]) -> HashSet<&'
         println!("{}:::: This is valid", possible_anagram);
         result.insert(possible_anagram);
     }
-
     result
 }
