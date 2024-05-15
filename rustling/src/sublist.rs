@@ -1,6 +1,16 @@
 #![allow(dead_code)]
 #![allow(unused_variables)]
 #![allow(unused_imports)]
+#![allow(unused_mut)]
+
+use std::any::type_name_of_val;
+
+pub fn make_first_character_capital() -> String {
+    let name = "pRedatoR".to_string();
+    let name_in_lowercase = name.to_lowercase();
+    let (first, rest) = name_in_lowercase.split_at(1);
+    format!("{}{}", first.to_uppercase(), rest)
+}
 
 pub fn main() {
     // let arr = [10, 20, 30];
