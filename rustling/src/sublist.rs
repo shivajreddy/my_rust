@@ -16,6 +16,12 @@ pub fn main() {
 
     let result: bool;
 
+
+    // Equal check: both lists are entirely equal
+    if a == b {
+        return 
+    }
+
     // check if the same sequence of numbers exist
     let mut possible_starting_indices: Vec<usize> = vec![];
     let target_starting_number: i32 = b[0];
