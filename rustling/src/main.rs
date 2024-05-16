@@ -2,12 +2,12 @@
 // mod lru;
 // mod playground;
 // mod some;
-mod sublist;
+mod minesweeper;
 
 fn main() {
     // boxy::main();
     // lru::main();
     // playground::main();
     // some::main();
-    sublist::main();
+    minesweeper::main();
 }
