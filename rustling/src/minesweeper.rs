@@ -94,15 +94,14 @@ pub fn main() {
     let grid: &[&str] = &main_grid;
 
     for (r, row_str) in grid.iter().enumerate() {
-        // println!("\nROW -> {}", row_str);
-        for (c, item) in row_str.chars().enumerate() {
-            if let Some(char) = get_item_at_coord(&grid, (r as i8, c as i8)) {
-                println!("*");
-            } else {
+        for c in 0..row_str.chars().count() {
+            // for (c, item) in row_str.chars().enumerate() {
+            if let Some(val) = get_item_at_coord(&grid, (r as i8, c as i8)) {
                 let mines = get_count(&grid, r, c);
                 println!("{}", mines);
+            } else {
+                println!("*");
             }
-            // println!("({},{}) {}", r, c, item);
         }
     }
 }
