@@ -3,18 +3,6 @@
 #![allow(unused_imports)]
 #![allow(unused_mut)]
 
-/*
-    ·*·*·
-    ··*··
-    ··*··
-    ·····
-
-    1*3*1
-    13*31
-    ·2*2·
-    ·111·
-*/
-
 use std::any::type_name_of_val;
 
 fn get_item_at_coord(grid: &[&str], rc: (i8, i8)) -> Option<char> {
@@ -59,33 +47,9 @@ fn get_count(grid: &[&str], r: usize, c: usize) -> i32 {
             }
             None => {}
         }
-        // if get_item_at_coord(&grid, neighbor) == '*' {
-        //     no_of_mines += 1;
-        // }
     }
 
     no_of_mines
-
-    /*
-    // get neighbors
-    let r_prev = if r == 0 { r } else { r - 1 };
-    let r_next = if r == rows - 1 { r } else { r + 1 };
-    let c_prev = if c == 0 { c } else { c - 1 };
-    let c_next = if c == cols - 1 { c } else { c + 1 };
-
-    let tl: Some<(usize, usize)> = (r_prev, c_prev); // top r-1, c-1
-    let t = (r_prev, c); // top r-1, c
-    let tr = (r_prev, c_next); // top-right r-1, c+1
-
-    let l = (r, c_prev); // left r, c-1
-    let r = (r, c_next); // right r, c+1
-
-    let bl = (r_next, c_prev); // bottom-left r+1, c-1
-    let b = (r_next, c); // bottom r+1, c
-    let br = (r_next, c_next); // right-bottom r+1, c+1
-
-    let all_neighbors = [tl, t, tr, l, r, bl, b, br];
-    */
 }
 
 pub fn main() {
