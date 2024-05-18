@@ -2,12 +2,13 @@
 // mod lru;
 // mod playground;
 // mod some;
-mod minesweeper;
+// mod minesweeper;
+mod allergies;
 
 fn main() {
     // boxy::main();
     // lru::main();
     // playground::main();
     // some::main();
-    minesweeper::main();
+    allergies::main();
 }
