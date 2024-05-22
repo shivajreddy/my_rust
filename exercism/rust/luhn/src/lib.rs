@@ -3,6 +3,10 @@ pub fn is_valid(code: &str) -> bool {
     let all_digits = get_all_digits(code);
     // println!("all-digits: {:?}", all_digits);
 
+    if all_digits.len() < 2 {
+        return false;
+    }
+
     let mut doubled_digits: Vec<u8> = vec![];
 
     for (idx, digit) in all_digits.iter().enumerate() {
@@ -34,6 +38,9 @@ pub fn is_valid(code: &str) -> bool {
 fn get_all_digits(code: &str) -> Vec<u8> {
     let mut result = vec![];
     for c in code.chars() {
+        if c == ' ' {
+            continue;
+        }
         let num = c.to_digit(10).unwrap() as u8;
         result.push(num);
     }
