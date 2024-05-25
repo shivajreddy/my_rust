@@ -1,16 +1,6 @@
-// mod boxy;
-// mod lru;
-// mod playground;
-// mod some;
-// mod minesweeper;
-// mod allergies;
-mod luhn;
+// Declare the foor and bar modules
+mod book;
 
 fn main() {
-    // boxy::main();
-    // lru::main();
-    // playground::main();
-    // some::main();
-    // allergies::main();
-    luhn::main();
+    book::chapter2::main();
 }
