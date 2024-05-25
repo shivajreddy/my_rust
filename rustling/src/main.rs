@@ -1,6 +1,7 @@
-// Declare the foor and bar modules
 mod book;
+mod practise;
 
 fn main() {
-    book::chapter2::main();
+    // book::chapter2::main();
+    book::chapter2::chapter2::main();
 }
