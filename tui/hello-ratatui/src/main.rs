@@ -48,8 +48,8 @@ fn main() -> Result<()> {
     // create a file with text
     let file = File::create("foo.txt");
     println!("{}", size_of_val(&file));
+
     Ok(())
-    //Result::Ok("done".to_string())
     // let mut new_file = File::create("bar.txt");
 
     // create a file in target directory
