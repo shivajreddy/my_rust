@@ -40,14 +40,17 @@ fn main() -> Result<()> {
 
 use std::fmt::{Debug, Formatter};
 use std::fs::File;
-use std::io::{self, stdout, Read, Result};
+use std::io::{self, stdout, Read, Result, Write};
 use std::mem::size_of_val;
 
 // fn main() -> Result<String, io::Error> {
 fn main() -> Result<()> {
     // create a file with text
-    let file = File::create("foo.txt");
-    println!("{}", size_of_val(&file));
+    let mut file = File::create("foo.txt")?;
+    file.write_all(b"wow\n")?;
+    file.write_all(b"wow")?;
+
+    println!("done");
 
     Ok(())
     // let mut new_file = File::create("bar.txt");
@@ -59,12 +62,4 @@ fn main() -> Result<()> {
     // read a file, and print content to console, line by line
 
     // copy data from one file to another
-}
-
-fn something(x: i32) -> Result<i32, String> {
-    if x > 0 {
-        Result::Ok(x)
-    } else {
-        Result::Err("wrong".to_string())
-    }
 }
