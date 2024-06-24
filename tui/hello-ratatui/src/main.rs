@@ -13,6 +13,7 @@ use ratatui::{
 };
 use std::io::{stdout, Result};
 
+// wtf
 fn main() -> Result<()> {
     stdout().execute(EnterAlternateScreen)?;
     enable_raw_mode()?;
