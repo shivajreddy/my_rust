@@ -1,43 +1,37 @@
 #![allow(unused)]
 
-/*
-use std::fs;
-// crossterm necessary to run the application
+// /*
 use crossterm::{
     event::{self, KeyCode, KeyEventKind},
-    terminal::{disable_raw_mode, enable_raw_mode,
-               EnterAlternateScreen, LeaveAlternateScreen},
-    ExecutableCommand
+    terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
+    ExecutableCommand,
 };
-
-// ratatui necessary to run the application
 use ratatui::{
+    backend::Backend,
     prelude::{CrosstermBackend, Stylize, Terminal},
-    widgets::Paragraph
+    widgets::Paragraph,
 };
-
-
 use std::io::{stdout, Result};
 
-
-/// Add code to set up and restore the terminal
-/// 1. App enters the 'alternate screen'
-/// - allows app to render, without disturbing normal term.
-/// 2. App enables the 'raw mode'
-/// - this turns off input and output process by terminal
-/// 3. App creates a 'backend' and 'terminal'
-///  - and then clears the screen
-/// Note: If disabling raw mode doesn't work
-///  - windows: close terminal tab
-///  - unix: `reset`
 fn main() -> Result<()> {
     stdout().execute(EnterAlternateScreen)?;
     enable_raw_mode()?;
 
+    let mut terminal = Terminal::new(CrosstermBackend::new(stdout()))?;
+
+    loop {
+        terminal.draw(|frame| {
+            let area = frame.size();
+            frame.render_widget(Paragraph::new("Hi there"), area);
+        })?;
+    }
+
+    stdout().execute(LeaveAlternateScreen);
+    disable_raw_mode()?;
     Ok(())
 }
 // */
-
+/*
 use std::fmt::{Debug, Formatter};
 use std::fs::File;
 use std::io::{self, stdout, Error, Read, Result, Write};
@@ -96,11 +90,4 @@ fn main() -> Result<()> {
 
     std::io::Result::Ok(())
 }
-
-struct SomeType {}
-
-impl SomeType {
-    fn something() {
-        println!("something is executed");
-    }
-}
+// */
