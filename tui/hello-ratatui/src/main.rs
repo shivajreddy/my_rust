@@ -1,20 +1,17 @@
 #![allow(unused)]
 
 // /*
-use std::fs;
-// crossterm necessary to run the application
 use crossterm::{
     event::{self, KeyCode, KeyEventKind},
     terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
     ExecutableCommand,
 };
-
-// ratatui necessary to run the application
 use ratatui::{
+    backend::Backend,
     prelude::{CrosstermBackend, Stylize, Terminal},
     widgets::Paragraph,
 };
-
+use std::fs;
 use std::io::{stdout, Result};
 
 fn main() -> Result<()> {
@@ -27,7 +24,7 @@ fn main() -> Result<()> {
     loop {
         terminal.draw(|frame| {
             let area = frame.size();
-            frame.render_widget(Paragraph::new("Hi there woaw"), area)
+            frame.render_widget(Paragraph::new("Hi wow there woaw"), area)
         });
     }
 
@@ -35,7 +32,6 @@ fn main() -> Result<()> {
     disable_raw_mode();
     Ok(())
 }
-
 // */
 /*
 use std::fmt::{Debug, Formatter};
