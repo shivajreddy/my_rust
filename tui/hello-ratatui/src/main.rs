@@ -14,6 +14,7 @@ use ratatui::{
 use std::fs;
 use std::io::{stdout, Result};
 
+// update from teclab
 fn main() -> Result<()> {
     stdout().execute(EnterAlternateScreen)?;
     enable_raw_mode()?;
