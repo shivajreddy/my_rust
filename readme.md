@@ -10,12 +10,12 @@ So that I can think in Rust with out having to think in Rust.
 (If you find this repo any helpful, please buy the books and support the authors)
 - [0 .The Book](https://doc.rust-lang.org/book/)  
 - [1 .Rustling - Book (Brown edition with quizzes)](https://rust-book.cs.brown.edu)  
-- 2. [Programming Rust (O'Reilly 2nd edition)](https://www.amazon.com/Programming-Rust-Fast-Systems-Development-dp-1492052590/dp/1492052590)  
+- 2 . [Programming Rust (O'Reilly 2nd edition)](https://www.amazon.com/Programming-Rust-Fast-Systems-Development-dp-1492052590/dp/1492052590)  
 Not a personal favorite of writing style, but comparet to other books, covered a wide range  
 of topics, with a very handful of examples.
 Book is alright, not exteremely deep dive into the language, but it's a good manual.  
 It is really helpful to have it handy, so recomended to get it.  
-- 3. [Rust for Rustaceans, Jon Gjengset](https://nostarch.com/rust-rustaceans)
+- 3 . [Rust for Rustaceans, Jon Gjengset](https://nostarch.com/rust-rustaceans)
 Writing style is deep, content is dense, the more deeper you follow the  
 content from beginning the easier and more control  
 you gain over the language. Hands down the best book for sincere rust programemrs.  
