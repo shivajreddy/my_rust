@@ -1,3 +1,3 @@
-pub fn foo() -> &str {
+pub fn foo() -> &'static str {
     "hello"
 }
