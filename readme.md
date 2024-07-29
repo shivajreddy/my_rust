@@ -1,4 +1,5 @@
-#### What is this repo for?
+
+### What is this repo for?
 This repo is my journey into getting good at Rust.  
 My goal as a programmer is to go deeper into topics and work on complex projects,  
 and I want to do that by getting good at Rust.  
@@ -21,7 +22,7 @@ content from beginning the easier and more control
 you gain over the language. Hands down the best book for sincere rust programemrs.  
 Follow along with Jon's YT series [Crust of Rust](https://www.youtube.com/playlist?list=PLqbS7AVVErFiWDOAVrPt7aYmnuuOLYvOa)  
 
-## Pracrice stuff I have found after extensive research (/practice/)
+## Pracrice stuff I have found after extensive research `/practice`
 - [Exercism](https://exercism.org/tracks/rust)  
 An amazing site(really cool project), that has a handful of problems that you 
 can do, which have decent tests, and also a cli to do the problems locally.  
