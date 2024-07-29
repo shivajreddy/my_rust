@@ -7,7 +7,7 @@ Making Rust as my primary language is my ultimate goal.
 So that I can think in Rust with out having to think in Rust.  
 
 
-## Books I learn from (/books/)
+## Books
 **If you find this repo any helpful, please buy the books and support the authors. None of the links are referals** 
 - [0. The Book](https://doc.rust-lang.org/book/)  
 - [1. Rustling - Book (Brown edition with quizzes)](https://rust-book.cs.brown.edu)  
@@ -22,7 +22,7 @@ content from beginning the easier and more control
 you gain over the language. Hands down the best book for sincere rust programemrs.  
 Follow along with Jon's YT series [Crust of Rust](https://www.youtube.com/playlist?list=PLqbS7AVVErFiWDOAVrPt7aYmnuuOLYvOa)  
 
-## Pracrice stuff I have found after extensive research `/practice`
+## Pracrice Resources
 - [Exercism](https://exercism.org/tracks/rust)  
 An amazing site(really cool project), that has a handful of problems that you 
 can do, which have decent tests, and also a cli to do the problems locally.  
