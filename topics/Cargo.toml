@@ -4,3 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+
+[[example]]
+name = "result_yt1_intro"
+path = "examples/result/yt1/intro.rs"
+
+[[example]]
+name = "result_yt1_fallible"
+path = "examples/result/yt1/fallible.rs"

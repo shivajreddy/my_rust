@@ -1,0 +1,10 @@
+[package]
+name = "surreal"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+thiserror = "1.0.63"
+tokio = "1.39.2"
+surrealdb = "1.5.4"
+anyhow = "1.0.86"
