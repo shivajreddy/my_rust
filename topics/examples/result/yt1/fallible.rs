@@ -98,11 +98,15 @@ impl W3 {
 
 struct W4(Vec<String>);
 impl W4 {
-    fn new(v: &[u8]) -> Result<Self, E> {
+    /// this is how you could do with a priliminary approach, but there is 
+    /// a better way
+    fn new_verbose(v: &[u8]) -> Result<Self, E> {
         let mut res: Vec<String> = vec![];
         for &item in v {
             res.push(fallible(item)?)
         }
         Ok(Self(res))
     }
+
+    ///
 }
