@@ -1,5 +1,6 @@
 #![allow(unused)]
 /// 1. add the 'rusqlite' crate as a dependancy
+/// the 'bundled' feature helped with build issue
 use rusqlite::{params, Connection, Result};
 
 #[derive(Debug)]
@@ -11,15 +12,17 @@ struct Person {
 
 fn main() -> Result<()> {
     /// This is how you make a connection
-    let conn = Connection::open_in_memory()?;
+    let connection = Connection::open_in_memory()?;
 
     /// Create a query
     let query = "
-    CREATE TABLE users (name TEXT, age INTEGER);
-    INSERT INTO users VALUES ('Alice', 42);
-    INSERT INTO users VALUES ('Bob', 69);
+    CREATE TABLE person (
+            id    INTEGER PRIMARY KEY,
+            name  TEXT NOT NULL,
+            data  BLOB
+    )
     ";
 
-    let r = connection.execute(query);
+    let r = connection.execute(query, ());
     Ok(())
 }
