@@ -1,5 +1,7 @@
 #![allow(unused)]
 
+use std::convert::Infallible;
+
 #[derive(Debug)]
 struct Q(i32);
 
@@ -10,8 +12,6 @@ fn main() {
     let q1 = res.map(|val| Q(val)); // verbose
     let mut res: Result<i32, ()> = Err(());
     let q2 = res.map(Q); // same as above, but simpler
-
-    println!("q1:{:?}", q1);
 }
 
 fn something() {}
@@ -106,5 +106,38 @@ impl W4 {
             res.push(fallible(item)?)
         }
         Ok(Self(res))
+    }
+
+    /// a better way to do is this
+    /*
+    You can use .collect on an iterator, if 'FromIterator' trait is implemented
+    we are able to use collect on iterator of Result, because the trait
+    FromIterator is implemented for Result type.
+
+
+    ```
+    impl <A, E, V> FromIterator<Result<A, E>> for Result<V, E>
+    where
+        V: FromIterator<A>
+    ```
+    lets focus on V: FromIterator<A>, what this tells us is that V also
+    implements FromIterator, so we colled type V iterator.
+    - concept of collecting: say we are iterating over i32's we can collect them
+        in to a vector, because vector implements FromIterator.
+    so in other words, if we are able to collect values of A type into a type V, => V<A>
+        - i.e., say able to collect i32 into a Vec
+    then we can also collect values Result<A, _> into Result<V<A>, _>
+        - i.e., we also can collect Result<i32, E> into Result<Vec<i32>, E>
+
+    so if all the results are Ok() then you get Ok(Vec<>)
+     */
+    fn new(v: &[u8]) -> Result<Self, E> {
+        let result = v
+            .iter()
+            .map(|&item| fallible(item))
+            // .collect(); // wont work bcs, type must be known at this point
+            .collect::<Result<Vec<_>, _>>(); // so we tell compiler
+
+        Ok(Self(result?))
     }
 }

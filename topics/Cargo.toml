@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+anyhow = "1.0.86"
+thiserror = "1.0.63"
 
 [[example]]
 name = "result_yt1_intro"
@@ -12,3 +14,10 @@ path = "examples/result/yt1/intro.rs"
 [[example]]
 name = "result_yt1_fallible"
 path = "examples/result/yt1/fallible.rs"
+
+[[example]]
+name = "result_yt1_example"
+path = "examples/result/yt1/example.rs"
+[[example]]
+name = "result_yt1_example_anyhow"
+path = "examples/result/yt1/example_anyhow.rs"
