@@ -5,7 +5,7 @@ use std::io::{stdout, Stdout};
 use ratatui::{
     backend::CrosstermBackend,
     crossterm::{
-        event::{self, KeyCode, KeyEventKind},
+        event::{self, KeyCode, KeyEvent, KeyEventKind},
         terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
         ExecutableCommand,
     },
@@ -38,6 +38,14 @@ pub struct App {
 }
 
 impl App {
+    pub fn run(&mut self, terminal: &mut tui::Tui) -> Result<()> {
+        while !self.exit {
+            terminal.draw(|frame| self.render_frame(frame))?;
+            self.handle_events()?;
+        }
+        Ok(())
+    }
+
     fn render_frame(&self, frame: &mut Frame) {
         let area = frame.area();
         let text = format!("Count: {}", self.counter);
@@ -49,40 +57,42 @@ impl App {
         let fps = std::time::Duration::from_millis(16);
         if event::poll(fps)? {
             if let event::Event::Key(key) = event::read()? {
-                if key.kind == KeyEventKind::Press {
-                    // 'j' key to decrease count
-                    if key.code == KeyCode::Char('j') {
-                        self.decrease_counter();
-                    }
-                    // 'k' key to increase count
-                    if key.code == KeyCode::Char('k') {
-                        self.increase_counter();
-                    }
-                    // 'q' key to exit application
-                    if key.code == KeyCode::Char('q') {
-                        self.exit();
-                    }
-                }
+                self.event_increase(key);
+                self.event_decrease(key);
+                self.event_exit(key);
             }
         }
         Ok(())
     }
 
-    pub fn run(&mut self, terminal: &mut tui::Tui) -> Result<()> {
-        while !self.exit {
-            terminal.draw(|frame| self.render_frame(frame))?;
-            self.handle_events()?;
+    // Events
+    fn event_exit(&mut self, key: KeyEvent) {
+        // verify event
+        let target_key = 'q';
+        if key.kind != KeyEventKind::Press || key.code != KeyCode::Char(target_key) {
+            return;
         }
-        Ok(())
-    }
-
-    fn exit(&mut self) {
+        // event logic
         self.exit = true;
     }
-    fn increase_counter(&mut self) {
+
+    fn event_increase(&mut self, key: KeyEvent) {
+        // verify event
+        let target_key = 'k';
+        if key.kind != KeyEventKind::Press || key.code != KeyCode::Char(target_key) {
+            return;
+        }
+        // event logic
         self.counter += 1;
     }
-    fn decrease_counter(&mut self) {
+
+    fn event_decrease(&mut self, key: KeyEvent) {
+        // verify event
+        let target_key = 'j';
+        if key.kind != KeyEventKind::Press || key.code != KeyCode::Char(target_key) {
+            return;
+        }
+        // event logic
         self.counter -= 1;
     }
 }
