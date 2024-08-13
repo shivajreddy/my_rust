@@ -98,7 +98,7 @@ impl W3 {
 
 struct W4(Vec<String>);
 impl W4 {
-    /// this is how you could do with a priliminary approach, but there is 
+    /// this is how you could do with a priliminary approach, but there is
     /// a better way
     fn new_verbose(v: &[u8]) -> Result<Self, E> {
         let mut res: Vec<String> = vec![];
@@ -107,6 +107,4 @@ impl W4 {
         }
         Ok(Self(res))
     }
-
-    ///
 }
