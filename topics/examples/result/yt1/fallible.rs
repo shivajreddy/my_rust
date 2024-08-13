@@ -12,7 +12,6 @@ fn main() {
     let q2 = res.map(Q); // same as above, but simpler
 
     println!("q1:{:?}", q1);
-    println!("q1:{:?}", q1);
 }
 
 fn something() {}
