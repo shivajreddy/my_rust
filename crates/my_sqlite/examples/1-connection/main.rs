@@ -1,9 +1,17 @@
 #![allow(unused)]
-/// 1. add the `sqlite` not 'rusqlite' crate as a dependancy
+/// 1. add the 'rusqlite' crate as a dependancy
+use rusqlite::{params, Connection, Result};
 
-fn main() {
+#[derive(Debug)]
+struct Person {
+    id: i32,
+    name: String,
+    data: Option<Vec<u8>>,
+}
+
+fn main() -> Result<()> {
     /// This is how you make a connection
-    let connection = sqlite::open(":memory").unwrap();
+    let conn = Connection::open_in_memory()?;
 
     /// Create a query
     let query = "
@@ -13,4 +21,5 @@ fn main() {
     ";
 
     let r = connection.execute(query);
+    Ok(())
 }
