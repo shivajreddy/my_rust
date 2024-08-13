@@ -24,5 +24,9 @@ name = "result_yt1_example_anyhow"
 path = "examples/result/yt1/example_anyhow.rs"
 
 [[example]]
+name = "dyn_basics_intro"
+path = "examples/dyndispatch/basics/intro.rs"
+
+[[example]]
 name = "dyn_yt1_start"
 path = "examples/dyndispatch/yt1/start.rs"

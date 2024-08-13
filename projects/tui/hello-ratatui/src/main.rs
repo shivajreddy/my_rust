@@ -1,18 +1,20 @@
 #![allow(unused)]
 
-// /*
-use crossterm::{
-    event::{self, KeyCode, KeyEventKind},
-    terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
-    ExecutableCommand,
-};
+use std::io::stdout;
+
 use ratatui::{
-    backend::Backend,
-    prelude::{CrosstermBackend, Stylize, Terminal},
+    backend::CrosstermBackend,
+    crossterm::{
+        event::{self, KeyCode, KeyEventKind},
+        terminal::{disable_raw_mode, enable_raw_mode, EnterAlternateScreen, LeaveAlternateScreen},
+        ExecutableCommand,
+    },
+    style::Stylize,
     widgets::Paragraph,
+    Terminal,
 };
-use std::fs;
-use std::io::{stdout, Result};
+
+use anyhow::Result;
 
 fn main() -> Result<()> {
     stdout().execute(EnterAlternateScreen)?;
@@ -21,49 +23,31 @@ fn main() -> Result<()> {
     let mut terminal = Terminal::new(CrosstermBackend::new(stdout()))?;
     terminal.clear()?;
 
+    let mut count = 1;
+
+    /// Main loop
     loop {
         terminal.draw(|frame| {
-            let area = frame.size();
-            frame.render_widget(Paragraph::new("Hi wow there woaw"), area)
+            let area = frame.area();
+            let text = format!("Count: {}", count);
+            frame.render_widget(Paragraph::new(text).white().on_blue(), area)
         });
+
+        // Events
+        let fps = std::time::Duration::from_millis(16);
+        if event::poll(fps)? {
+            if let event::Event::Key(key) = event::read()? {
+                if key.kind == KeyEventKind::Press && key.code == KeyCode::Char('i') {
+                    count += 1;
+                }
+                if key.kind == KeyEventKind::Press && key.code == KeyCode::Char('q') {
+                    break;
+                }
+            }
+        }
     }
 
     stdout().execute(LeaveAlternateScreen);
     disable_raw_mode();
     Ok(())
 }
-// */
-/*
-use std::fmt::{Debug, Formatter};
-use std::fs::File;
-use std::io::{self, stdout, Error, Read, Result, Write};
-use std::mem::size_of_val;
-use std::ops::Deref;
-
-fn do_some_fs() -> Result<()> {
-    let result_file = std::fs::File::open("foo.txt");
-    let mut file = result_file.unwrap(); // panics if file isn't found
-                                         // create a file with text
-                                         // let mut file = File::create("foo.txt")?;
-                                         // file.write_all(b"wow\n")?;
-                                         // file.write_all(b"wow")?;
-
-    let mut buffer = vec![];
-
-    // check the current operating system
-    let x = file.read_to_end(&mut buffer);
-
-    let r1 = cfg!(target_os = "windows");
-    let r2 = cfg!(target_os = "macos");
-    let r3 = cfg!(target_os = "linux");
-    println!("{r1}{r2}{r3}");
-
-    if cfg!(target_os = "windows") {
-        println!("you are running a windows")
-    };
-
-    println!("{:?}", buffer);
-
-    std::io::Result::Ok(())
-}
-// */
