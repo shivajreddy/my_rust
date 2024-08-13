@@ -1,6 +1,10 @@
 #![allow(unused)]
 
-use std::io::{stdout, Stdout};
+use std::{
+    io::{stdout, Stdout},
+    thread,
+    time::Duration,
+};
 
 use ratatui::{
     backend::CrosstermBackend,
@@ -10,6 +14,7 @@ use ratatui::{
         ExecutableCommand,
     },
     style::Stylize,
+    text::Span,
     widgets::Paragraph,
     Frame, Terminal,
 };
@@ -35,12 +40,15 @@ fn main() -> Result<()> {
 pub struct App {
     counter: i32,
     exit: bool,
+
+    pos: u8,
 }
 
 impl App {
     pub fn run(&mut self, terminal: &mut tui::Tui) -> Result<()> {
         while !self.exit {
-            terminal.draw(|frame| self.render_frame(frame))?;
+            // terminal.draw(|frame| self.render_frame(frame))?;
+            terminal.draw(|frame| self.render_loading_animation(frame))?;
             self.handle_events()?;
         }
         Ok(())
@@ -50,6 +58,36 @@ impl App {
         let area = frame.area();
         let text = format!("Count: {}", self.counter);
         frame.render_widget(Paragraph::new(text).white().on_blue(), area);
+    }
+
+    // TODO:
+    fn render_loading_animation(&mut self, frame: &mut Frame) {
+        let area = frame.area();
+
+        let mut span = Span::raw("");
+
+        if self.pos == 0 {
+            span = Span::raw("🔴    ");
+            thread::sleep(Duration::from_millis(200));
+            self.pos += 1;
+        } else if self.pos == 1 {
+            span = Span::raw(" 🔴   ");
+            thread::sleep(Duration::from_millis(200));
+            self.pos += 1;
+        } else if self.pos == 2 {
+            span = Span::raw("  🔴  ");
+            thread::sleep(Duration::from_millis(200));
+            self.pos += 1;
+        } else if self.pos == 3 {
+            span = Span::raw("   🔴 ");
+            thread::sleep(Duration::from_millis(200));
+            self.pos += 1;
+        } else if self.pos == 4 {
+            span = Span::raw("    🔴");
+            thread::sleep(Duration::from_millis(200));
+            self.pos = 0;
+        }
+        frame.render_widget(span, area);
     }
 
     fn handle_events(&mut self) -> Result<()> {
