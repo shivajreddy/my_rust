@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+fn main() {
+    println!("Hello there");
+    println!("Hello there");
+=======
 struct Person {
     name: String,
     age: i32,
@@ -18,4 +23,5 @@ fn main() {
     };
     p.print();
     // println!("Age: {}", p.age);
+>>>>>>> refs/remotes/origin/main
 }
